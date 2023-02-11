@@ -21,15 +21,7 @@ class Statistics{
         delete [] stat_Array;
     }
     
-    Statistics& operator << (int *x){
-       // size = sizeof(x)/sizeof(x[0]);
-        for(int i=0; i<size; i++){
-            stat_Array[i]=x[i];
-        }
-        return *this;
-    }
-    
-    Statistics& operator << (int num){
+    Statistics& operator << (int num){  //main문에서 stat<<x[i]인데 for문 안에 x[i]가 있으므로 사실 int형 정수를 인수로 넘겨주는 것이다.
         size += 1;
         stat_Array[size-1] = num;
         return *this;
