@@ -17,20 +17,37 @@ class Circle{
     void show() {
         cout << "radius = " << radius << " 인 원" << endl;
     }
+ /*  
+    Circle& operator ++(){
+        radius++;
+        return *this;
+    }
     
-    friend Circle operator + (int r, Circle c);
+    Circle operator ++(int x){
+        Circle tmp = *this;
+        radius++;
+        return tmp;
+    }*/
+    friend Circle& operator ++(Circle &c);
+    friend Circle operator ++(Circle &c, int x);
 
 };
 
-Circle operator + (int r, Circle c){
-    c.radius += r;
+Circle& operator ++ (Circle &c){
+    c.radius++;
     return c;
 }
 
+Circle operator ++(Circle &c, int x){
+   Circle tmp = c;
+   c.radius++;
+   return tmp;
+}
 int main()
 {
     Circle a(5), b(4);
-    b = 1 + a;
+    ++a;
+    b = a++;
     a.show();
     b.show();
 
